@@ -8,7 +8,7 @@ output "cloudfront_realtime_log_configs_arn" {
 }
 output "cloudfront_realtime_log_configs_endpoint" {
   description = "Map of endpoint values across all cloudfront_realtime_log_configs, keyed the same as var.cloudfront_realtime_log_configs"
-  value       = { for k, v in aws_cloudfront_realtime_log_config.cloudfront_realtime_log_configs : k => v.endpoint if v.endpoint != null && length(v.endpoint) > 0 }
+  value       = { for k, v in aws_cloudfront_realtime_log_config.cloudfront_realtime_log_configs : k => one(v.endpoint) if v.endpoint != null && length(v.endpoint) > 0 }
 }
 output "cloudfront_realtime_log_configs_fields" {
   description = "Map of fields values across all cloudfront_realtime_log_configs, keyed the same as var.cloudfront_realtime_log_configs"
